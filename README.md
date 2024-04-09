@@ -41,7 +41,7 @@ Nessa aplicação vamos utilizar banco de dados relacional (SQL). Para ambiente 
 
 ### Diagrama ERD
 
-![erd.svg](Especificac%CC%A7o%CC%83es%/erd.svg)
+![erd.svg](especificacoes/erd.svg)
 
 ### Estrutura do banco (SQL)
 
