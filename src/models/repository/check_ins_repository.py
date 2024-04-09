@@ -9,7 +9,7 @@ class CheckInsRepository:
         with db_connection_handler as database:
             try:
                 check_in = CheckIns(
-                    attendeeID=attendee_id,
+                    attendeeId=attendee_id,
                 )
                 database.session.add(check_in)
                 database.session.commit()
