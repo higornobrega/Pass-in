@@ -45,10 +45,11 @@ class AttendeesHandler:
         
     def find_attendees_from_event(self, http_request:HttpRequest) -> HttpResponse:
         event_id = http_request.param['event_id']
-        attendees = self.__attendees_repository.get_attendees_by_event_id(event_id)
+        query = http_request.param['query']
+        attendees = self.__attendees_repository.get_attendees_by_event_id(event_id, query)
         if not attendees:
             raise HttpNotFoundError('Participantes não encontrados!')
-        
+
         formated_attendees = []
         
         for attendee in attendees:

@@ -34,9 +34,10 @@ def get_attendees_badge(attendee_id):
 def get_attendees(event_id):
     try:
         attendees_handler = AttendeesHandler()
-        http_request = HttpRequest(param={'event_id': event_id})
-        
+        query = request.args.get('query')
+        http_request = HttpRequest(param={'event_id': event_id, 'query': query})
         http_response = attendees_handler.find_attendees_from_event(http_request)
+
         return jsonify(http_response.body), http_response.status_code
     except Exception as error: 
         http_response = handle_error(error)

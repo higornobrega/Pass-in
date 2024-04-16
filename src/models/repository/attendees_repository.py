@@ -40,7 +40,9 @@ class AttendeesRepository:
                 database.session.rollback()
                 raise exception
             
-    def get_attendees_by_event_id(self, event_id: str) -> List[Attendees]:
+    def get_attendees_by_event_id(self, event_id: str, query:str) -> List[Attendees]:
+        
+        q = f'%{query}%'
         with db_connection_handler as database:
             # try:
             attendees = (
@@ -48,6 +50,7 @@ class AttendeesRepository:
                 .query(Attendees)
                 .outerjoin(CheckIns, CheckIns.attendeeId == Attendees.id)
                 .filter(Attendees.event_id == event_id)
+                .filter(Attendees.name.ilike(q))
                 .with_entities(
                     Attendees.id, 
                     Attendees.name, 
